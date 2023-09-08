@@ -36,4 +36,5 @@ public class PokemonAppTest {
         Pokemon pokemon = pokemonBL.getFiltered(testPokemons, minHpFilter);
         Assert.assertEquals(0, pokemon.getHp());
     }
+
 }

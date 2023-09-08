@@ -29,4 +29,16 @@ public class PokemonBL {
 
         return pokemon;
     }
+
+    public double getAverageSpeed() {
+        throw new RuntimeException("Method not implemented yet");
+    }
+
+    public void countByType() {
+        throw new RuntimeException("Method not implemented yet");
+    }
+
+    public int totalHP() {
+        throw new RuntimeException("Method not implemented yet");
+    }
 }
