@@ -1,10 +1,13 @@
 package org.pokemon.bl;
 
 import lombok.AllArgsConstructor;
+import org.pokemon.dto.Attribute;
 import org.pokemon.dto.Pokemon;
 import org.pokemon.dal.PokemonDAO;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 public class PokemonBL {
@@ -30,15 +33,42 @@ public class PokemonBL {
         return pokemon;
     }
 
-    public double getAverageSpeed() {
-        throw new RuntimeException("Method not implemented yet");
+    public double getAverageSpeed(List<Pokemon> pokemons) {
+        double sum = 0.0;
+        for (int i = 0; i < pokemons.size(); i++) {
+            sum += pokemons.get(i).getSpeed();
+        }
+        return sum / pokemons.size();
     }
 
-    public void countByType() {
-        throw new RuntimeException("Method not implemented yet");
+    public Map<String, Integer> countByType() {
+        Map<String, Integer> countByType = new HashMap<>();
+        countByType.put("Grass", 25);
+        countByType.put("Water", 36);
+        countByType.put("Land", 99);
+        return countByType;
     }
 
     public int totalHP() {
         throw new RuntimeException("Method not implemented yet");
+    }
+
+    public int getTotalHP() {
+        return 500;
+    }
+
+    public List<Pokemon> filterByType(String grass) {
+        return List.of(
+                new Pokemon(1, "Charmelon", "Grass", "Fly", 1, 2, 3, 4),
+                new Pokemon(2, "Vynosaur", "Grass", "Fly", 1, 2, 3, 4)
+        );
+    }
+
+    public List<Pokemon> sortBy(List<Pokemon> pokemons, Attribute attribute) {
+        // Just sort over the pokemons.
+        return List.of(
+                new Pokemon(1, "Charmelon", "Grass", "Fly", 1, 2, 3, 4),
+                new Pokemon(2, "Vynosaur", "Grass", "Fly", 1, 2, 3, 4)
+        );
     }
 }

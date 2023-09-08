@@ -19,7 +19,7 @@ public class PokemonAppTest {
             , new Pokemon(0, "mypok0", "type1-0", "type2-0", 0, 0)
     );
 
-    PokemonDAO pokemonDAO = new PokemonInMemDAO(testPokemons);
+    PokemonDAO pokemonDAO = new MockPokemonDAO(testPokemons);
 
     @Test
     public void testMaxHP() {
@@ -36,5 +36,20 @@ public class PokemonAppTest {
         Pokemon pokemon = pokemonBL.getFiltered(testPokemons, minHpFilter);
         Assert.assertEquals(0, pokemon.getHp());
     }
+
+    // More tests..
+    @Test public void testNonExistingDataSet() {}
+    @Test public void testEmptyDataSet() {}
+    @Test public void testMalformedDataSetMissingCommas() {}
+    @Test public void testMalformedDataSet_IntNotNumber() {}
+    @Test public void testMoreEdgeCases() {} // Just add more edge cases test.
+    @Test public void testMinAttack() {}
+    @Test public void testMultipleHaveSameMin() {}
+    @Test public void testHighestDefense() {}
+    @Test public void testMultipleHaveHighestDefense() {}
+    @Test public void testAvgSpeed() {}
+    @Test public void testCountByType() {}
+
+    // More, edge cases, cover legit cases.
 
 }

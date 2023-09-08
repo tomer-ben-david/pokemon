@@ -24,12 +24,11 @@ public class PokemonFileDAO implements PokemonDAO {
             sc.useDelimiter(",");
             sc.nextLine();
             while (sc.hasNextLine()) {
-                sc.nextLine();
-                if (sc.hasNext()) {
-                    String token = sc.next();
-                    int id = Integer.parseInt(token);
-                    pokemons.add(new Pokemon(id, "", "", "", 1, 1));
-                }
+                String[] line = sc.nextLine().split(",");
+                pokemons.add(new Pokemon(Integer.parseInt(line[0]),
+                        line[1], line[2], line[3],
+                        Integer.parseInt(line[4]), Integer.parseInt(line[5]),
+                        Integer.parseInt(line[6]), Integer.parseInt(line[7])));
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

@@ -8,7 +8,7 @@ import org.pokemon.dto.Pokemon;
 import java.util.List;
 
 @AllArgsConstructor
-public class PokemonInMemDAO implements PokemonDAO {
+public class MockPokemonDAO implements PokemonDAO {
 
     @Getter
     private List<Pokemon> pokemons;

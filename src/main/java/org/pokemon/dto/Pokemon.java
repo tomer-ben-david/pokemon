@@ -12,4 +12,6 @@ public class Pokemon {
     private String type2;
     private int hp;
     private int attack;
+    private int defense;
+    private int speed;
 }
