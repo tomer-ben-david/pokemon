@@ -3,7 +3,6 @@ package org.pokemon;
 import org.pokemon.bl.MaxFieldFilter;
 import org.pokemon.bl.PokemonBL;
 import org.pokemon.dal.*;
-import org.pokemon.model.Attribute;
 import org.pokemon.model.Pokemon;
 
 import java.util.Arrays;
