@@ -23,6 +23,7 @@ public class PokemonBL {
 
 
     public Pokemon getFiltered(List<Pokemon> pokemons, FilterTwo filterTwo) {
+
         return pokemons.stream()
                 .reduce(filterTwo::filter)
                 .orElse(null);
