@@ -18,10 +18,10 @@ public class PokemonBL {
 
     public Pokemon getFiltered(List<Pokemon> pokemons, FilterTwo filterTwo) {
         if (pokemons.isEmpty()) {
-            return null; // Handle empty list case
+            return null;
         }
 
-        Pokemon pokemon = pokemons.get(0); // Initialize with the first person
+        Pokemon pokemon = pokemons.get(0);
 
         for (int i = 1; i < pokemons.size(); i++) {
             pokemon = filterTwo.filter(pokemon, pokemons.get(i));
