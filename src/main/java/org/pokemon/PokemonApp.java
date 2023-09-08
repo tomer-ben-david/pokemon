@@ -2,10 +2,7 @@ package org.pokemon;
 
 import org.pokemon.bl.MaxFieldFilter;
 import org.pokemon.bl.PokemonBL;
-import org.pokemon.dal.MaxHpHandler;
-import org.pokemon.dal.PokemonFileDAO;
-import org.pokemon.dal.PokemonStreamAcceptor;
-import org.pokemon.dal.PokemonStreamHandler;
+import org.pokemon.dal.*;
 import org.pokemon.model.Attribute;
 import org.pokemon.model.Pokemon;
 
@@ -17,9 +14,13 @@ public class PokemonApp {
     public static void main(String[] args) {
         // Question 1 - Data Parsing + Pokemon object result.
         MaxHpHandler maxHpHandler = new MaxHpHandler();
+        TotalHpHandler totalHpHandler = new TotalHpHandler();
+        HighestAttackHandler highestAttackHandler = new HighestAttackHandler();
         PokemonStreamAcceptor pokemonStreamAcceptor = new PokemonStreamAcceptor();
         PokemonStreamHandler pokemonStreamHandler = new PokemonStreamHandler(
-                List.of(maxHpHandler)
+                List.of(maxHpHandler,
+                        totalHpHandler,
+                        highestAttackHandler)
         );
         PokemonFileDAO pokemonFileDAO = new PokemonFileDAO(
                 pokemonStreamAcceptor,
@@ -41,8 +42,10 @@ public class PokemonApp {
         Pokemon pokemonHighestAttack = pokemonBL.getFiltered(pokemons, new MaxFieldFilter(Comparator.comparingInt(Pokemon::getAttack)));
         System.out.printf("Pokemon [%s] has highest Attack [%d]\n",
                 pokemonHighestAttack.getName(), pokemonHighestAttack.getAttack());
-        System.out.printf("Stream: Pokemon [%s] has highest Attack [%d]\n",
+        System.out.printf("Stream ver1: Pokemon [%s] has highest Attack [%d]\n",
                 pokemonHighestHp.getName(), pokemonStreamAcceptor.getHighestAttack());
+        System.out.printf("Stream ver2: Pokemon [%s] has highest Attack [%d]\n",
+                pokemonHighestHp.getName(), highestAttackHandler.getResult());
 
         Pokemon pokemonHighestDefense = pokemonBL.getFiltered(pokemons, new MaxFieldFilter(Comparator.comparingInt(Pokemon::getDefense)));
         System.out.printf("Pokemon [%s] has highest Defense [%d]\n",
@@ -59,7 +62,8 @@ public class PokemonApp {
         System.out.printf("Stream: Pokemons count by type [%s]\n", pokemonStreamAcceptor.getCountByType());
 
         System.out.printf("Pokemons total HP [%d]\n", pokemonBL.getTotalHP(pokemons));
-        System.out.printf("Stream: Pokemons total HP [%d]\n", pokemonStreamAcceptor.getTotalHp());
+        System.out.printf("Stream ver1: Pokemons total HP [%d]\n", pokemonStreamAcceptor.getTotalHp());
+        System.out.printf("Stream ver2: Pokemons total HP [%d]\n", totalHpHandler.getResult());
 
         // Question 3 - Unit tests
         // see -- PokemonAppTest.java -- Added few unit tests - added empty ones signature only when having time.
