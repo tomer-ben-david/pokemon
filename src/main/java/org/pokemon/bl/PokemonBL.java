@@ -5,7 +5,12 @@ import org.pokemon.model.Attribute;
 import org.pokemon.model.Pokemon;
 import org.pokemon.dal.PokemonDAO;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class PokemonBL {
@@ -18,24 +23,13 @@ public class PokemonBL {
 
 
     public Pokemon getFiltered(List<Pokemon> pokemons, FilterTwo filterTwo) {
-        if (pokemons.isEmpty()) {
-            return null;
-        }
-
-        Pokemon pokemon = pokemons.get(0);
-
-        for (int i = 1; i < pokemons.size(); i++) {
-            pokemon = filterTwo.filter(pokemon, pokemons.get(i));
-        }
-
-        return pokemon;
+        return pokemons.stream()
+                .reduce(filterTwo::filter)
+                .orElse(null);
     }
 
     public double getAverageSpeed(List<Pokemon> pokemons) {
-        double sum = 0.0;
-        for (int i = 0; i < pokemons.size(); i++) {
-            sum += pokemons.get(i).getSpeed();
-        }
+        double sum = pokemons.stream().mapToDouble(Pokemon::getSpeed).sum();
         return sum / pokemons.size();
     }
 
@@ -56,14 +50,9 @@ public class PokemonBL {
     }
 
     public List<Pokemon> filterByType(List<Pokemon> pokemons, String type) {
-        List<Pokemon> result = new ArrayList<>();
-        for (Pokemon pokemon : pokemons) {
-            if (Objects.equals(pokemon.getType1(), type)) {
-                result.add(pokemon);
-            }
-        }
-
-        return result;
+        return pokemons.stream()
+                .filter(pokemon -> Objects.equals(pokemon.getType1(), type))
+                .collect(Collectors.toList());
     }
 
     public List<Pokemon> sortBy(List<Pokemon> pokemons, Attribute attribute) {
