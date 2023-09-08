@@ -13,14 +13,13 @@ import java.util.Map;
 public class PokemonApp {
     public static void main(String[] args) {
 
-        // Question 1 answer - Data Parsing + Pokemon object result.
+        // Question 1 - Data Parsing + Pokemon object result.
         PokemonFileDAO pokemonFileDAO = new PokemonFileDAO("C:\\Users\\LENOVO\\Downloads\\pokemon.csv");
         PokemonBL pokemonBL = new PokemonBL(pokemonFileDAO);
 
         List<Pokemon> pokemons = pokemonBL.getAll();
 
-
-        // Question 2 answer - Analyze Data.
+        // Question 2 - Analyze Data.
         Pokemon pokemonHighestHp = pokemonBL.getFiltered(pokemons, new MaxFieldFilter(Comparator.comparingInt(Pokemon::getHp)));
         System.out.printf("Pokemon [%s] has highest HP [%d]\n",
                 pokemonHighestHp.getName(), pokemonHighestHp.getHp());
@@ -34,23 +33,23 @@ public class PokemonApp {
                 pokemonHighestDefense.getName(), pokemonHighestDefense.getDefense());
 
         double avgSpeed = pokemonBL.getAverageSpeed(pokemons);
-        System.out.printf("Pokemons average speed [%.2f]%n\n", avgSpeed);
+        System.out.printf("Pokemons average speed [%.2f]%n", avgSpeed);
 
         Map<String, Integer> pokemonCountPerType = pokemonBL.countByType();
-        System.out.printf("Pokemons count by type [%s]", pokemonCountPerType);
+        System.out.printf("Pokemons count by type [%s]\n", pokemonCountPerType);
 
-        System.out.printf("Pokemons total HP [%d]", pokemonBL.getTotalHP());
+        System.out.printf("Pokemons total HP [%d]\n", pokemonBL.getTotalHP());
 
-        // Question 3 answer - unit tests
-        // see -- PokemonAppTest.java --
+        // Question 3 - Unit tests
+        // see -- PokemonAppTest.java -- Added few unit tests - added empty ones signature only when having time.
 
-        // Question 4 answer - Additional features.
+        // Question 4 - Additional features.
 
         // Filter pokemon by type and display results.
-        List<Pokemon> grassTypePokemon = pokemonBL.filterByType("Grass");
-        System.out.printf("Pokemons filter by type [%s]", grassTypePokemon);
+        List<Pokemon> darkTypePokemons = pokemonBL.filterByType(pokemons, "Dark");
+        System.out.printf("Pokemons filter by type Dark [%s]\n", darkTypePokemons);
 
-        // Question 4 answer - sort based on attribute.
+        // Question 4 - sort based on attribute.
         List<Pokemon> sortByHp = pokemonBL.sortBy(pokemons, Attribute.HP);
 
         // Plan for big data.

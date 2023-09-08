@@ -5,9 +5,7 @@ import org.pokemon.dto.Attribute;
 import org.pokemon.dto.Pokemon;
 import org.pokemon.dal.PokemonDAO;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AllArgsConstructor
 public class PokemonBL {
@@ -57,11 +55,15 @@ public class PokemonBL {
         return 500;
     }
 
-    public List<Pokemon> filterByType(String grass) {
-        return List.of(
-                new Pokemon(1, "Charmelon", "Grass", "Fly", 1, 2, 3, 4),
-                new Pokemon(2, "Vynosaur", "Grass", "Fly", 1, 2, 3, 4)
-        );
+    public List<Pokemon> filterByType(List<Pokemon> pokemons, String type) {
+        List<Pokemon> result = new ArrayList<>();
+        for (Pokemon pokemon : pokemons) {
+            if (Objects.equals(pokemon.getType1(), type)) {
+                result.add(pokemon);
+            }
+        }
+
+        return result;
     }
 
     public List<Pokemon> sortBy(List<Pokemon> pokemons, Attribute attribute) {
