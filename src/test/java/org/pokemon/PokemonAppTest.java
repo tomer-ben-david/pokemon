@@ -19,7 +19,7 @@ public class PokemonAppTest {
             , new Pokemon(0, "mypok0", "type1-0", "type2-0", 0, 0, 0, 0)
     );
 
-    PokemonDAO pokemonDAO = new MockPokemonDAO(testPokemons);
+    PokemonDAO pokemonDAO = new FakePokemonDAO(testPokemons);
 
     @Test
     public void testMaxHP() {
