@@ -26,7 +26,7 @@ public class PokemonApp {
         PokemonFileDAO pokemonFileDAO = new PokemonFileDAO(
                 pokemonStreamAcceptor,
                 pokemonStreamHandler,
-                "/tmp/pokemon.csv");
+                "pokemon.csv");
         PokemonBL pokemonBL = new PokemonBL(pokemonFileDAO);
 
         List<Pokemon> pokemons = pokemonBL.getAll();
