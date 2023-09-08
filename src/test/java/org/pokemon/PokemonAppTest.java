@@ -14,9 +14,9 @@ import java.util.List;
 
 public class PokemonAppTest {
     List<Pokemon> testPokemons = List.of(
-            new Pokemon(1, "mypok1", "type1-1", "type2-2", 1, 2)
-            , new Pokemon(2, "mypok2", "type1-2", "type2-2", 2, 2)
-            , new Pokemon(0, "mypok0", "type1-0", "type2-0", 0, 0)
+            new Pokemon(1, "mypok1", "type1-1", "type2-2", 1, 2, 1, 1)
+            , new Pokemon(2, "mypok2", "type1-2", "type2-2", 2, 2, 2, 2)
+            , new Pokemon(0, "mypok0", "type1-0", "type2-0", 0, 0, 0, 0)
     );
 
     PokemonDAO pokemonDAO = new MockPokemonDAO(testPokemons);
