@@ -13,8 +13,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-// show example stream get max
-
 public class PokemonApp {
     public static void main(String[] args) {
         // Question 1 - Data Parsing + Pokemon object result.
