@@ -1,16 +1,17 @@
 package org.pokemon.bl;
 
-import lombok.AllArgsConstructor;
-import org.pokemon.model.Attribute;
-import org.pokemon.model.Pokemon;
-import org.pokemon.dal.PokemonDAO;
-
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.pokemon.dal.PokemonDAO;
+import org.pokemon.model.Attribute;
+import org.pokemon.model.Pokemon;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class PokemonBL {
@@ -58,7 +59,7 @@ public class PokemonBL {
 
     public List<Pokemon> sortBy(List<Pokemon> pokemons, Attribute attribute) {
         // Just sort over the pokemons.
-        return List.of(
+        return Arrays.asList(
                 new Pokemon(1, "Charmelon", "Grass", "Fly", 1, 2, 3, 4),
                 new Pokemon(2, "Vynosaur", "Grass", "Fly", 1, 2, 3, 4)
         );
