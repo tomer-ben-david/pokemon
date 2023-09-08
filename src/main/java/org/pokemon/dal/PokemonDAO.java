@@ -1,6 +1,6 @@
 package org.pokemon.dal;
 
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Pokemon;
 
 import java.util.List;
 

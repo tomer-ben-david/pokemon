@@ -3,7 +3,7 @@ package org.pokemon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.pokemon.dal.PokemonDAO;
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Pokemon;
 
 import java.util.List;
 

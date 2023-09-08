@@ -3,8 +3,8 @@ package org.pokemon;
 import org.pokemon.bl.MaxFieldFilter;
 import org.pokemon.bl.PokemonBL;
 import org.pokemon.dal.PokemonFileDAO;
-import org.pokemon.dto.Attribute;
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Attribute;
+import org.pokemon.model.Pokemon;
 
 import java.util.Comparator;
 import java.util.List;

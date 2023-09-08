@@ -1,8 +1,8 @@
 package org.pokemon.bl;
 
 import lombok.AllArgsConstructor;
-import org.pokemon.dto.Attribute;
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Attribute;
+import org.pokemon.model.Pokemon;
 import org.pokemon.dal.PokemonDAO;
 
 import java.util.*;

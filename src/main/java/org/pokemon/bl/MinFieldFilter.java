@@ -1,7 +1,7 @@
 package org.pokemon.bl;
 
 import lombok.AllArgsConstructor;
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Pokemon;
 
 import java.util.Comparator;
 

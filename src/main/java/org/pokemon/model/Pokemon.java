@@ -1,4 +1,4 @@
-package org.pokemon.dto;
+package org.pokemon.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

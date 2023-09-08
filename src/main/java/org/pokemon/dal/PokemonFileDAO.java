@@ -1,13 +1,10 @@
 package org.pokemon.dal;
 
 import lombok.AllArgsConstructor;
-import org.pokemon.dto.Pokemon;
+import org.pokemon.model.Pokemon;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
