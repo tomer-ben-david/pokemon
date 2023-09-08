@@ -32,8 +32,8 @@ public class PokemonAppTest {
     @Test
     public void testMinHP() {
         PokemonBL pokemonBL = new PokemonBL(pokemonDAO);
-        MinFieldFilter maxHpFilter = new MinFieldFilter(Comparator.comparingInt(Pokemon::getHp));
-        Pokemon pokemon = pokemonBL.getFiltered(testPokemons, maxHpFilter);
+        MinFieldFilter minHpFilter = new MinFieldFilter(Comparator.comparingInt(Pokemon::getHp));
+        Pokemon pokemon = pokemonBL.getFiltered(testPokemons, minHpFilter);
         Assert.assertEquals(0, pokemon.getHp());
     }
 }
