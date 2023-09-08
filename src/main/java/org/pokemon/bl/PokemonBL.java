@@ -45,8 +45,8 @@ public class PokemonBL {
         throw new RuntimeException("Method not implemented yet");
     }
 
-    public int getTotalHP() {
-        return 500;
+    public int getTotalHP(List<Pokemon> pokemons) {
+        return pokemons.stream().mapToInt(Pokemon::getHp).sum();
     }
 
     public List<Pokemon> filterByType(List<Pokemon> pokemons, String type) {

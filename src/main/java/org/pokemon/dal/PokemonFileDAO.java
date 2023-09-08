@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 @AllArgsConstructor
 public class PokemonFileDAO implements PokemonDAO {
+    final PokemonStreamHandler pokemonStreamHandler;
     final String filePath;
     @Override
     public List<Pokemon> getAll() {
@@ -22,10 +23,12 @@ public class PokemonFileDAO implements PokemonDAO {
             sc.nextLine();
             while (sc.hasNextLine()) {
                 String[] line = sc.nextLine().split(",");
-                pokemons.add(new Pokemon(Integer.parseInt(line[0]),
+                Pokemon pokemon = new Pokemon(Integer.parseInt(line[0]),
                         line[1], line[2], line[3],
                         Integer.parseInt(line[4]), Integer.parseInt(line[5]),
-                        Integer.parseInt(line[6]), Integer.parseInt(line[7])));
+                        Integer.parseInt(line[6]), Integer.parseInt(line[7]));
+                pokemons.add(pokemon);
+                pokemonStreamHandler.acceptPokemon(pokemon);
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
