@@ -76,7 +76,7 @@ public class PokemonApp {
         System.out.printf("Pokemons filter by type Dark [%s]\n", darkTypePokemons);
 
         // Question 4 - sort based on attribute.
-        List<Pokemon> sortByHp = pokemonBL.sortBy(pokemons, Attribute.HP);
+        // List<Pokemon> sortByHp = pokemonBL.sortBy(pokemons, Attribute.HP);
 
         // Plan for big data.
         //
