@@ -3,9 +3,9 @@ package org.pokemon;
 import org.pokemon.bl.MaxFieldFilter;
 import org.pokemon.bl.PokemonBL;
 import org.pokemon.dal.*;
-import org.pokemon.model.Attribute;
 import org.pokemon.model.Pokemon;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +18,14 @@ public class PokemonApp {
         HighestAttackHandler highestAttackHandler = new HighestAttackHandler();
         PokemonStreamAcceptor pokemonStreamAcceptor = new PokemonStreamAcceptor();
         PokemonStreamHandler pokemonStreamHandler = new PokemonStreamHandler(
-                List.of(maxHpHandler,
+                Arrays.asList(maxHpHandler,
                         totalHpHandler,
                         highestAttackHandler)
         );
         PokemonFileDAO pokemonFileDAO = new PokemonFileDAO(
                 pokemonStreamAcceptor,
                 pokemonStreamHandler,
-                "C:\\Users\\LENOVO\\Downloads\\pokemon.csv");
+                "pokemon.csv");
         PokemonBL pokemonBL = new PokemonBL(pokemonFileDAO);
 
         List<Pokemon> pokemons = pokemonBL.getAll();
@@ -75,7 +75,7 @@ public class PokemonApp {
         System.out.printf("Pokemons filter by type Dark [%s]\n", darkTypePokemons);
 
         // Question 4 - sort based on attribute.
-        List<Pokemon> sortByHp = pokemonBL.sortBy(pokemons, Attribute.HP);
+        // List<Pokemon> sortByHp = pokemonBL.sortBy(pokemons, Attribute.HP);
 
         // Plan for big data.
         //

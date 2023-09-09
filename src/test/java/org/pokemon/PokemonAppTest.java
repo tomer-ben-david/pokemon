@@ -9,11 +9,12 @@ import org.pokemon.bl.PokemonBL;
 import org.pokemon.dal.PokemonDAO;
 import org.pokemon.model.Pokemon;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class PokemonAppTest {
-    List<Pokemon> testPokemons = List.of(
+    List<Pokemon> testPokemons = Arrays.asList(
             new Pokemon(1, "mypok1", "type1-1", "type2-2", 1, 2, 1, 1)
             , new Pokemon(2, "mypok2", "type1-2", "type2-2", 2, 2, 2, 2)
             , new Pokemon(0, "mypok0", "type1-0", "type2-0", 0, 0, 0, 0)

@@ -1,13 +1,14 @@
 package org.pokemon.dal;
 
-import lombok.AllArgsConstructor;
-import org.pokemon.model.Pokemon;
-
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import org.pokemon.model.Pokemon;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class PokemonFileDAO implements PokemonDAO {
@@ -18,21 +19,20 @@ public class PokemonFileDAO implements PokemonDAO {
     public List<Pokemon> getAll() {
         Scanner sc = null;
         List<Pokemon> pokemons = new ArrayList<Pokemon>();
-        try {
-            sc = new Scanner(new File(filePath));
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath)) {
+            sc = new Scanner(inputStream);
             sc.useDelimiter(",");
             sc.nextLine();
             while (sc.hasNextLine()) {
-                String[] line = sc.nextLine().split(",");
-                Pokemon pokemon = new Pokemon(Integer.parseInt(line[0]),
-                        line[1], line[2], line[3],
-                        Integer.parseInt(line[4]), Integer.parseInt(line[5]),
-                        Integer.parseInt(line[6]), Integer.parseInt(line[7]));
-                pokemons.add(pokemon);
-                pokemonStreamAcceptor.acceptPokemon(pokemon);
-                pokemonStreamHandler.acceptPokemon(pokemon);
+                String line = sc.nextLine();
+                Pokemon pokemon = buildPokemon(line);
+                if (pokemon != null) {
+                    pokemons.add(pokemon);
+                    pokemonStreamAcceptor.acceptPokemon(pokemon);
+                    pokemonStreamHandler.acceptPokemon(pokemon);
+                }
             }
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
             if (sc != null) {
@@ -40,5 +40,24 @@ public class PokemonFileDAO implements PokemonDAO {
             }
         }
         return pokemons;
+    }
+
+    private Pokemon buildPokemon(String line) {
+        try {
+            String[] lineSplit = line.split(",");
+            int index = 0;
+            return new Pokemon(
+                    Integer.parseInt(lineSplit[index++]),
+                    lineSplit[index++],
+                    lineSplit[index++],
+                    lineSplit[index++],
+                    Integer.parseInt(lineSplit[index++]),
+                    Integer.parseInt(lineSplit[index++]),
+                    Integer.parseInt(lineSplit[index++]),
+                    Integer.parseInt(lineSplit[index++]));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
